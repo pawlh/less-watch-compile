@@ -1,0 +1,19 @@
+{
+  "name": "tbd",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "echo Compiling LESS",
+    "predeploy": "npm run compile",
+    "deploy": "echo Deploying",
+    "dev": "node app/watch.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "less": "2.7.1"
+  }
+}
