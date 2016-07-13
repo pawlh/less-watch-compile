@@ -1,5 +1,5 @@
 # less-watch-compile
-Auto compile LESS files in a specified directory, and save the generated CSS where specified
+Watch specified directory for changes to LESS files, and save the generated CSS where specified
 
 ### Installation
 Install from the [npm registry](https://www.npmjs.com/)
@@ -14,7 +14,7 @@ node node_modules/less-watch-compile -w <dir> -o <dir>
 -w, --watchDir Specify what directory to watch  
 -o, --outputDir Define what directory to output compiled LESS to
 ### Version
-1.1.2
+1.1.3
 
 License
 ----
