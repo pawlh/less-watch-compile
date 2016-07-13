@@ -15,5 +15,9 @@
   "license": "ISC",
   "devDependencies": {
     "less": "2.7.1"
+  },
+  "dependencies": {
+    "colors": "^1.1.2",
+    "yargs": "^4.8.0"
   }
 }
