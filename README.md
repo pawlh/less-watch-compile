@@ -14,7 +14,7 @@ node node_modules/less-watch-compile -w <dir> -o <dir>
 -w, --watchDir Specify what directory to watch  
 -o, --outputDir Define what directory to output compiled LESS to
 ### Version
-1.1.1
+1.1.2
 
 License
 ----
