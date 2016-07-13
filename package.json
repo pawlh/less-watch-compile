@@ -1,23 +1,17 @@
 {
   "name": "less-watch-compile",
   "version": "1.1.0",
-  "description": "",
+  "description": "auto compile LESS files in a specified directory",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "compile": "echo Compiling LESS",
-    "predeploy": "npm run compile",
-    "deploy": "echo Deploying",
-    "dev": "node app/watch.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "less": "2.7.1"
-  },
+  "author": "Paul Hathaway",
+  "license": "MIT",
   "dependencies": {
     "colors": "^1.1.2",
-    "yargs": "^4.8.0"
+    "yargs": "^4.8.0",
+    "less": "~2.7.1"
   }
 }

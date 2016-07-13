@@ -27,6 +27,7 @@ module.exports.start = (input, output) => {
         less.render(content).then(output => {
             const cssFilename = path.basename(file, '.less') + '.css'
             fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
+            
             console.log('Succesfully compiled in '.green + ((Date.now() - start) + 'ms').yellow)
         })
     })
