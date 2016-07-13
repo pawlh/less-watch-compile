@@ -3,14 +3,12 @@ const config = require('yargs')
     .option('w', {
         alias: 'watchDir',
         type: 'string',
-        default: 'less',
-        describe: 'Define what directory to watch'
+        describe: 'Specify what directory to watch'
     })
     .option('o', {
         alias: 'outputDir',
         type: 'string',
-        defult: 'dist',
-        describe: 'Define what directory to output compiled LESS to'
+        describe: 'Specify what directory to output compiled LESS to'
     })
     .demand(['w','o'])
     .argv
