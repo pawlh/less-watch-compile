@@ -1,12 +1,11 @@
 {
   "name": "less-watch-compile",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "auto compile LESS files in a specified directory or file",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/paulchathaway/less-watch-compile.git"
@@ -21,5 +20,16 @@
     "chalk": "^1.1.3",
     "less": "~2.7.1",
     "yargs": "^4.8.0"
-  }
+  },
+  "keywords": [
+    "lessc",
+    "less",
+    "compiler",
+    "watch",
+    "watcher",
+    "compile",
+    "auto",
+    "directory",
+    "css"
+  ]
 }

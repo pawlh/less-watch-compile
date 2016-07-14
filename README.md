@@ -38,7 +38,7 @@ node node_modules/less-watch-compile -f src/main.less -o public/styles
 If you find any bugs, please submit an issue. This project is still in a early stage, and any feedback would greatly help! :)
 
 ### Version
-1.1.6
+1.1.7
 
 License
 ----
