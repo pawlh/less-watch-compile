@@ -13,22 +13,29 @@ module.exports.start = (input, output) => {
 
     let isCompiling = false
 
-    fs.watch(stylesDir, { recursive: true }, (event, file) => {
-        if (isCompiling) return
-        console.log(('Detected change in \'' + stylesDir + '\'').green)
-        let start = Date.now()
-        isCompiling = true
-        setTimeout(function () {
-            isCompiling = false
-        }, 100);
-        const content = fs.readFileSync(path.join(stylesDir, file), 'utf-8')
+    fs.watch(stylesDir, {
+        recursive: true
+    },
+        (event, file) => {
+            if (path.extname(file) != '.less') return
+            if (isCompiling) return
 
-        console.log(('Attemping to compile ' + input + ' to ' + input).yellow)
-        less.render(content).then(output => {
-            const cssFilename = path.basename(file, '.less') + '.css'
-            fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
-            
-            console.log('Succesfully compiled in '.green + ((Date.now() - start) + 'ms').yellow)
+            console.log(('Detected change in \'' + stylesDir + '\'').green)
+
+            let start = Date.now()
+
+            isCompiling = true
+            setTimeout(function () {
+                isCompiling = false
+            }, 100);
+            const content = fs.readFileSync(path.join(stylesDir, file), 'utf-8')
+
+            console.log(('Attemping to compile ' + file + ' to ' + input).yellow)
+            less.render(content).then(output => {
+                const cssFilename = path.basename(file, '.less') + '.css'
+                fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
+
+                console.log('Succesfully compiled in '.green + ((Date.now() - start) + 'ms').yellow)
+            })
         })
-    })
 }
