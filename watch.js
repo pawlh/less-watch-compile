@@ -31,11 +31,15 @@ module.exports.start = (input, output) => {
             const content = fs.readFileSync(path.join(stylesDir, file), 'utf-8')
 
             console.log(('Attemping to compile ' + file + ' to ' + input).yellow)
-            less.render(content).then(output => {
-                const cssFilename = path.basename(file, '.less') + '.css'
-                fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
+            less.render(content).then(
+                output => {
+                    const cssFilename = path.basename(file, '.less') + '.css'
+                    fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
 
-                console.log('Succesfully compiled in '.green + ((Date.now() - start) + 'ms').yellow)
-            })
+                    console.log('Succesfully compiled in '.green + ((Date.now() - start) + 'ms').yellow)
+                },
+                error => {
+                    console.log('Unsuccesful. Failed to render.\n' + error)
+                })
         })
 }
