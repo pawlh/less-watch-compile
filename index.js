@@ -18,7 +18,7 @@ const config = require('yargs')
     })
     .demand(['o'])
     .argv
-if (config.file == undefined)
+if (!config.file)
     watcher.start(config.watchDir.trim(), config.outputDir.trim())
 else
     watcher.start(config.file.trim(), config.outputDir.trim(), true)
