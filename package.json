@@ -1,7 +1,7 @@
 {
   "name": "less-watch-compile",
-  "version": "1.1.5",
-  "description": "auto compile LESS files in a specified directory",
+  "version": "1.1.6",
+  "description": "auto compile LESS files in a specified directory or file",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

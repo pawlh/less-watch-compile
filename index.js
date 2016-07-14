@@ -3,6 +3,7 @@ const config = require('yargs')
     .option('w', {
         alias: 'watchDir',
         type: 'string',
+        default: '/',
         describe: 'Specify what directory to watch'
     })
     .option('o', {
@@ -10,7 +11,14 @@ const config = require('yargs')
         type: 'string',
         describe: 'Specify what directory to output compiled LESS to'
     })
-    .demand(['w','o'])
+    .option('f', {
+        alias: 'file',
+        type: 'string',
+        describe: 'Specify a particular file to watch, rather than watching an entire directory'
+    })
+    .demand(['o'])
     .argv
-
-watcher.start(config.watchDir.replace(' ', ''), config.outputDir.replace(' ', ''))
+if (config.file == undefined)
+    watcher.start(config.watchDir.trim(), config.outputDir.trim())
+else
+    watcher.start(config.file.trim(), config.outputDir.trim(), true)

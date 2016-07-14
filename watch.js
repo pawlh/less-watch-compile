@@ -1,4 +1,4 @@
-module.exports.start = (input, output) => {
+module.exports.start = (input, output, isFile) => {
     const fs = require('fs')
     const path = require('path')
     const less = require('less')
@@ -13,33 +13,50 @@ module.exports.start = (input, output) => {
 
     let isCompiling = false
 
-    fs.watch(stylesDir, {
-        recursive: true
-    },
-        (event, file) => {
-            if (path.extname(file) != '.less') return
-            if (isCompiling) return
+    if (!isFile) {
+        fs.watch(stylesDir, {
+            recursive: true
+        },
+            (event, file) => {
+                if (path.extname(file) != '.less') return
 
-            console.log((chalk.yellow('Detected change in \'' + stylesDir + '\'')))
+                renderCss(path.join(stylesDir, file))
+            })
+    }
+    else {
 
-            let start = Date.now()
-
-            isCompiling = true
-            setTimeout(function () {
-                isCompiling = false
-            }, 100);
-            const content = fs.readFileSync(path.join(stylesDir, file), 'utf-8')
-
-            console.log((chalk.yellow('Attemping to compile ' + file + ' to ' + input)))
-            less.render(content).then(
-                output => {
-                    const cssFilename = path.basename(file, '.less') + '.css'
-                    fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
-
-                    console.log(chalk.green('Succesfully compiled in ') + chalk.yellow((Date.now() - start) + 'ms'))
-                },
-                error => {
-                    console.log('Unsuccesful. Failed to render.\n' + error)
-                })
+        fs.watchFile(stylesDir, (curr, prev) => {
+            if (curr.size == 0) {
+                console.log(stylesDir + ' does not exist. Try making it first.')
+                return
+            }
+            renderCss(stylesDir)
         })
+    }
+
+    function renderCss(file) {
+        if (isCompiling) return
+        
+        console.log((chalk.yellow('Detected change in \'' + file + '\'')))
+
+        let start = Date.now()
+        isCompiling = true
+
+        setTimeout(() => {
+            isCompiling = false
+        }, 100);
+
+        console.log(chalk.yellow('Attemping to compile ' + file))
+        const content = fs.readFileSync(file, 'utf-8')
+        less.render(content).then(
+            output => {
+                const cssFilename = path.basename(file, '.less') + '.css'
+                fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
+
+                console.log(chalk.green('Succesfully compiled in ') + chalk.yellow((Date.now() - start) + 'ms'))
+            },
+            error => {
+                console.log('Unsuccesful. Failed to render.\n' + error)
+            })
+    }
 }
