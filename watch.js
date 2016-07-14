@@ -2,7 +2,7 @@ module.exports.start = (input, output) => {
     const fs = require('fs')
     const path = require('path')
     const less = require('less')
-    const colors = require('colors');
+    const chalk = require('chalk');
 
     const home = process.cwd()
 
@@ -20,7 +20,7 @@ module.exports.start = (input, output) => {
             if (path.extname(file) != '.less') return
             if (isCompiling) return
 
-            console.log(('Detected change in \'' + stylesDir + '\'').green)
+            console.log((chalk.yellow('Detected change in \'' + stylesDir + '\'')))
 
             let start = Date.now()
 
@@ -30,13 +30,13 @@ module.exports.start = (input, output) => {
             }, 100);
             const content = fs.readFileSync(path.join(stylesDir, file), 'utf-8')
 
-            console.log(('Attemping to compile ' + file + ' to ' + input).yellow)
+            console.log((chalk.yellow('Attemping to compile ' + file + ' to ' + input)))
             less.render(content).then(
                 output => {
                     const cssFilename = path.basename(file, '.less') + '.css'
                     fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
 
-                    console.log('Succesfully compiled in '.green + ((Date.now() - start) + 'ms').yellow)
+                    console.log(chalk.green('Succesfully compiled in ') + chalk.yellow((Date.now() - start) + 'ms'))
                 },
                 error => {
                     console.log('Unsuccesful. Failed to render.\n' + error)
