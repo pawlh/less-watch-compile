@@ -14,7 +14,7 @@ node node_modules/less-watch-compile -w <dir> -o <dir> -f <path>
 -o, --outputDir Define what directory to output compiled LESS to [REQUIRED]  
 -w, --watchDir Specify what directory to watch [Defaults to '/']  
 -f, --file Specify a particular file to watch, rather than watching an entire directory  
-*Note, if both ---watchDir and --file are used, --watch will be ignored*
+*Note, if both ---watchDir and --file are used, --watchDir will be ignored*
 
 #### Example Usage
 Parent  
