@@ -14,6 +14,7 @@ node node_modules/less-watch-compile -w <dir> -o <dir> -f <path>
 -o, --outputDir Define what directory to output compiled LESS to [REQUIRED]  
 -w, --watchDir Specify what directory to watch [Defaults to '/']  
 -f, --file Specify a particular file to watch, rather than watching an entire directory  
+-s, --safetyOff Add flag to disable checking for underscore ( _ ) preceding filenames [Defaults to false]
 *Note, if both ---watchDir and --file are used, --watchDir will be ignored*
 
 #### Example Usage
@@ -38,7 +39,7 @@ node node_modules/less-watch-compile -f src/main.less -o public/styles
 If you find any bugs, please submit an issue. This project is still in a early stage, and any feedback would greatly help! :)
 
 ### Version
-1.1.7
+1.1.8
 
 License
 ----
