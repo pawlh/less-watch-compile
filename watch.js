@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 module.exports.start = (safety, input, output, isFile) => {
   const fs = require('fs')
   const path = require('path')
