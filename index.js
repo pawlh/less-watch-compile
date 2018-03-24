@@ -1,33 +1,31 @@
-'use strict';
 const watcher = require('./watch')
 const config = require('yargs')
-    .option('w', {
-        alias: 'watchDir',
+    .option('watch-directory', {
+        alias: 'w',
         type: 'string',
-        default: '/',
-        describe: 'Specify what directory to watch'
+        default: './',
+        describe: 'Specify what directory to watch. Defaults to current directory if none is specified'
     })
-    .option('o', {
-        alias: 'outputDir',
+    .option('output-directory', {
+        alias: 'o',
+        demandOption: true,
         type: 'string',
         describe: 'Specify what directory to output compiled LESS to'
     })
-    .option('f', {
-        alias: 'file',
+    .option('file', {
+        alias: 'f',
         type: 'string',
-        describe: 'Specify a particular file to watch, rather than watching an entire directory'
+        describe: 'Specify a certain file to watch'
     })
-    
-    // Eventually
-    .option('-s', {
-        alias: 'safetyOff',
-        type: 'boolean',
-        describe: 'Disable safety check for importing dependencies of other LESS files'
-    })
-    
-    .demand(['o'])
     .argv
-if (!config.file)
-    watcher.start(config.safetyOff, config.watchDir.trim(), config.outputDir.trim())
-else
-    watcher.start(config.safetyOff, config.file.trim(), config.outputDir.trim(), true)
+
+let input = {
+    dir: (!config.f ? config.w : config.f).trim(),
+    isFile: !!config.f
+    }
+
+watcher.start(input, config.o.trim())
+// if (!config.file)
+//     watcher.start(config.watchDir.trim(), config.outputDir.trim())
+// else
+//     watcher.start(config.file.trim(), config.outputDir.trim(), true)

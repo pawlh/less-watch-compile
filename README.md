@@ -2,7 +2,7 @@
 Watch specified directory or file for changes to LESS files, and save the generated CSS where specified
 
 ### Installation
-Install from the [npm registry](https://www.npmjs.com/)
+Install from [npm](https://www.npmjs.com/)
 ```sh
 npm i less-watch-compile
 ```
@@ -12,9 +12,9 @@ npm i less-watch-compile
 node node_modules/less-watch-compile -w <dir> -o <dir> -f <path>
 ```
 -o, --outputDir Define what directory to output compiled LESS to [REQUIRED]  
--w, --watchDir Specify what directory to watch [Defaults to '/']  
+-w, --watchDir Specify what directory to watch [Defaults to './']  
 -f, --file Specify a particular file to watch, rather than watching an entire directory  
--s, --safetyOff Add flag to disable checking for underscore ( _ ) preceding filenames [Defaults to false]  
+
 *Note, if both ---watchDir and --file are used, --watchDir will be ignored*
 
 #### Example Usage
@@ -33,13 +33,13 @@ To only watch for *main.less*, use
 node node_modules/less-watch-compile -f src/main.less -o public/styles
 ```
 ### Todos
-* Set up check to ignore LESS files that are imports of another LESS file
+* Add option for sourcemaps
 
 # Bugs
 If you find any bugs, please submit an issue. This project is still in a early stage, and any feedback would greatly help! :)
 
 ### Version
-1.1.8
+2.0.0
 
 License
 ----
