@@ -4,24 +4,30 @@ const config = require('yargs')
         alias: 'w',
         type: 'string',
         default: './',
-        describe: 'Specify what directory to watch. Defaults to current directory if none is specified'
+        describe: 'Directory to watch. Defaults to current directory if none is specified'
     })
     .option('output-directory', {
         alias: 'o',
         demandOption: true,
         type: 'string',
-        describe: 'Specify what directory to output compiled LESS to'
+        describe: 'Directory to output compiled LESS to'
     })
     .option('file', {
         alias: 'f',
         type: 'string',
-        describe: 'Specify a certain file to watch'
+        describe: 'Single file to watch'
+    })
+    .option('sourcemap', {
+        alias: 'm',
+        type: 'boolean',
+        describe: 'Enable generating of sourcemap'
     })
     .argv
 
 let input = {
     dir: (!config.f ? config.w : config.f).trim(),
-    isFile: !!config.f
+    isFile: !!config.f,
+    map: config.m
     }
 
 watcher.start(input, config.o.trim())

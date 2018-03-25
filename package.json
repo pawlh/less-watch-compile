@@ -1,6 +1,6 @@
 {
   "name": "less-watch-compile",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "auto compile LESS files in a specified directory or file",
   "main": "index.js",
   "scripts": {

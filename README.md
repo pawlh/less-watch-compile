@@ -11,11 +11,14 @@ npm i less-watch-compile
 ```sh
 node node_modules/less-watch-compile -w <dir> -o <dir> -f <path>
 ```
--o, --outputDir Define what directory to output compiled LESS to [REQUIRED]  
--w, --watchDir Specify what directory to watch [Defaults to './']  
--f, --file Specify a particular file to watch, rather than watching an entire directory  
+  --watch-directory, -w   Directory to watch. Defaults to current directory if
+                          none is specified             [string] [default: "./"]
+  --output-directory, -o  Directory to output compiled LESS to
+                                                             [string] [required]
+  --file, -f              Single file to watch                          [string]
+  --sourcemap, -m         Enable generating of sourcemap               [boolean]
 
-*Note, if both ---watchDir and --file are used, --watchDir will be ignored*
+*Note, if both ---watch-directory and --file are used, --watch-directory will be ignored*
 
 #### Example Usage
 Parent  
@@ -23,7 +26,8 @@ Parent
 |--------main.less  
 |----public  
 |--------styles  
-|------------main.css  
+|------------main.css
+|------------main.css.map  
 In the example directory above, the contents *src/* can be compiled to *public/styles/* using
 ```sh
 node node_modules/less-watch-compile -w src -o public/styles
@@ -32,14 +36,18 @@ To only watch for *main.less*, use
 ```sh
 node node_modules/less-watch-compile -f src/main.less -o public/styles
 ```
+To include a sourcemap with *main.css*, use
+```sh
+node node_modules/less-watch-compile -f src/main.less -o public/styles -m
+```
 ### Todos
-* Add option for sourcemaps
+* Reduce delay in changes detection
 
 # Bugs
 If you find any bugs, please submit an issue. This project is still in a early stage, and any feedback would greatly help! :)
 
 ### Version
-2.0.0
+2.1.0
 
 License
 ----

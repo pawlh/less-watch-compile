@@ -16,8 +16,8 @@ exports.start = (input, output) => {
 
   if (!input.isFile) {
     fs.watch(srcDir, {
-        recursive: true
-      },
+      recursive: true
+    },
       (event, file) => {
         if (path.extname(file) == '.less')
           renderCss(path.join(srcDir, file))
@@ -46,13 +46,18 @@ exports.start = (input, output) => {
       isCompiling = false
     }, 100);
 
-    console.log(chalk.yellow('Attemping to compile ' + file))
+    console.log(chalk.yellow('Attemping to compile ' + input.dir))
     fs.statSync(file)
     fs.readFile(file, 'utf-8', (err, content) => {
-      less.render(content).then(
+      less.render(content, { sourceMap: {} }).then(
         output => {
           const cssFilename = path.basename(file, '.less') + '.css'
           fs.writeFileSync(path.join(cssDir, cssFilename), output.css)
+
+          if (input.map) {
+            fs.writeFileSync(path.join(cssDir, cssFilename + '.map'), output.map)
+            console.log(chalk.yellow('Sourcemap \''+ input.dir + '.map' +'\' created'))
+          }
           console.log(chalk.green('Succesfully compiled in ') + chalk.yellow((Date.now() - start) + 'ms'))
         },
         error => {
