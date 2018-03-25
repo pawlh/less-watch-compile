@@ -11,12 +11,10 @@ npm i less-watch-compile
 ```sh
 node node_modules/less-watch-compile -w <dir> -o <dir> -f <path>
 ```
-  --watch-directory, -w   Directory to watch. Defaults to current directory if
-                          none is specified             [string] [default: "./"]
-  --output-directory, -o  Directory to output compiled LESS to
-                                                             [string] [required]
-  --file, -f              Single file to watch                          [string]
-  --sourcemap, -m         Enable generating of sourcemap               [boolean]
+  --watch-directory, -w   Directory to watch. Defaults to current directory if none is specified [string] [default: "./"]  
+  --output-directory, -o  Directory to output compiled LESS to [string] [required]  
+  --file, -f              Single file to watch [string]  
+  --sourcemap, -m         Enable generating of sourcemap [boolean]  
 
 *Note, if both ---watch-directory and --file are used, --watch-directory will be ignored*
 
