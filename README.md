@@ -26,7 +26,7 @@ Parent
 |--------main.less  
 |----public  
 |--------styles  
-|------------main.css
+|------------main.css  
 |------------main.css.map  
 In the example directory above, the contents *src/* can be compiled to *public/styles/* using
 ```sh
