@@ -9,7 +9,7 @@ npm i less-watch-compile
 
 ## Usage 
 ```sh
-node node_modules/less-watch-compile -w <dir> -o <dir> -f <path>
+node node_modules/less-watch-compile -w <dir> -o <dir> -f <path> -m
 ```
   --watch-directory, -w   Directory to watch. Defaults to current directory if none is specified [string] [default: "./"]  
   --output-directory, -o  Directory to output compiled LESS to [string] [required]  
